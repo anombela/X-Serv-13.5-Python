@@ -1,16 +1,24 @@
 #!/usr/bin/python
-fd = open('/etc/passwd','r')
-lista = fd.readlines()
+#Alfosno Nombela Moreno
+
+#abrir fichero
+fich=open("/etc/passwd","r")
+#leer lineas
+lineas = fich.readlines()
 dicc = {}
 
-for linea in lista:
-    lista2 = linea.split(':')
-    dicc[lista2[0]] = lista2[-1][:-1] # Para quitarme el \n 
+for linea in lineas:
+    conf = linea.split(':')
+    #me quedo primer y ultimo elemento
+    username = conf[0]
+    shell=conf[-1][:-1]  # para quitar el \ el -1
+    dicc[username] = shell
 
+##print dicc
 print dicc["root"]
-print len(dicc)
+print len (dicc)
 
 try:
-    print dicc["imaginario"]
+    print dicc["imaginario"]   #no existe
 except KeyError:
-    print "Usuario imaginario no existe" 
+    print "Usuario imaginario no existe"
